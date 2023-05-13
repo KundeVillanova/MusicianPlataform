@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{postShow.edit.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{postShow.edit.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/postShows}" th:text="#{postShow.edit.back}" class="btn btn-secondary" />
+                </div>
+            </div>
+            <div th:replace="~{fragments/forms::globalErrors('postShow')}" />
+            <form th:action="${T(br.com.csi.musician_plataform.util.WebUtils).getRequest().requestURI}" method="post">
+                <div th:replace="~{fragments/forms::inputRow(object='postShow', field='titulo')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='postShow', field='descricao')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='postShow', field='data', inputClass='js-datepicker')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='postShow', field='hora', inputClass='js-timepicker')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='postShow', field='ingressos')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='postShow', field='localizacao')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='postShow', field='idUser', type='select')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='postShow', field='idGenero', type='select')}" />
+                <input type="submit" th:value="#{postShow.edit.headline}" class="btn btn-primary mt-4" />
+            </form>
+        </div>
+    </body>
+</html>

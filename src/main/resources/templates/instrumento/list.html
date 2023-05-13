@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{instrumento.list.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{instrumento.list.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/instrumentos/add}" th:text="#{instrumento.list.createNew}" class="btn btn-primary ms-2" />
+                </div>
+            </div>
+            <div th:if="${instrumentos.empty}" th:text="#{instrumento.list.empty}" />
+            <div th:if="${!instrumentos.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th th:text="#{instrumento.id.label}" scope="col" />
+                            <th th:text="#{instrumento.nomeInstrumento.label}" scope="col" />
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="instrumento : ${instrumentos}">
+                            <td th:text="${instrumento.id}" />
+                            <td th:text="${instrumento.nomeInstrumento}" />
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a th:href="@{/instrumentos/edit/{id}(id=${instrumento.id})}" th:text="#{instrumento.list.edit}" class="btn btn-sm btn-info" />
+                                    <form th:action="@{/instrumentos/delete/{id}(id=${instrumento.id})}"
+                                            th:hx-confirm="#{delete.confirm}" method="post" class="d-inline">
+                                        <button th:text="#{instrumento.list.delete}" type="submit" class="btn btn-sm btn-danger" />
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

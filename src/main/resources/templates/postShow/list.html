@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{postShow.list.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{postShow.list.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/postShows/add}" th:text="#{postShow.list.createNew}" class="btn btn-primary ms-2" />
+                </div>
+            </div>
+            <div th:if="${postShows.empty}" th:text="#{postShow.list.empty}" />
+            <div th:if="${!postShows.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th th:text="#{postShow.id.label}" scope="col" />
+                            <th th:text="#{postShow.titulo.label}" scope="col" />
+                            <th th:text="#{postShow.descricao.label}" scope="col" />
+                            <th th:text="#{postShow.data.label}" scope="col" />
+                            <th th:text="#{postShow.hora.label}" scope="col" />
+                            <th th:text="#{postShow.ingressos.label}" scope="col" />
+                            <th th:text="#{postShow.localizacao.label}" scope="col" />
+                            <th th:text="#{postShow.idUser.label}" scope="col" />
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="postShow : ${postShows}">
+                            <td th:text="${postShow.id}" />
+                            <td th:text="${postShow.titulo}" />
+                            <td th:text="${postShow.descricao}" />
+                            <td th:text="${postShow.data}" />
+                            <td th:text="${postShow.hora}" />
+                            <td th:text="${postShow.ingressos}" />
+                            <td th:text="${postShow.localizacao}" />
+                            <td th:text="${postShow.idUser}" />
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a th:href="@{/postShows/edit/{id}(id=${postShow.id})}" th:text="#{postShow.list.edit}" class="btn btn-sm btn-info" />
+                                    <form th:action="@{/postShows/delete/{id}(id=${postShow.id})}"
+                                            th:hx-confirm="#{delete.confirm}" method="post" class="d-inline">
+                                        <button th:text="#{postShow.list.delete}" type="submit" class="btn btn-sm btn-danger" />
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

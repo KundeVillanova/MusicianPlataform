@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{postBanda.list.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{postBanda.list.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/postBandas/add}" th:text="#{postBanda.list.createNew}" class="btn btn-primary ms-2" />
+                </div>
+            </div>
+            <div th:if="${postBandas.empty}" th:text="#{postBanda.list.empty}" />
+            <div th:if="${!postBandas.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th th:text="#{postBanda.idBanda.label}" scope="col" />
+                            <th th:text="#{postBanda.titulo.label}" scope="col" />
+                            <th th:text="#{postBanda.descricao.label}" scope="col" />
+                            <th th:text="#{postBanda.idUser.label}" scope="col" />
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="postBanda : ${postBandas}">
+                            <td th:text="${postBanda.idBanda}" />
+                            <td th:text="${postBanda.titulo}" />
+                            <td th:text="${postBanda.descricao}" />
+                            <td th:text="${postBanda.idUser}" />
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a th:href="@{/postBandas/edit/{idBanda}(idBanda=${postBanda.idBanda})}" th:text="#{postBanda.list.edit}" class="btn btn-sm btn-info" />
+                                    <form th:action="@{/postBandas/delete/{idBanda}(idBanda=${postBanda.idBanda})}"
+                                            th:hx-confirm="#{delete.confirm}" method="post" class="d-inline">
+                                        <button th:text="#{postBanda.list.delete}" type="submit" class="btn btn-sm btn-danger" />
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
