@@ -31,10 +31,9 @@ public class UsuarioService {
     private final PostBandaRepository postBandaRepository;
     private final PostShowRepository postShowRepository;
 
-    public UsuarioService(final UsuarioRepository usuarioRepository,
-            final InstrumentoRepository instrumentoRepository,
-            final GeneroRepository generoRepository, final PostBandaRepository postBandaRepository,
-            final PostShowRepository postShowRepository) {
+    public UsuarioService(final UsuarioRepository usuarioRepository, final InstrumentoRepository instrumentoRepository,
+            final GeneroRepository generoRepository, final PostBandaRepository postBandaRepository, final PostShowRepository postShowRepository)
+    {
         this.usuarioRepository = usuarioRepository;
         this.instrumentoRepository = instrumentoRepository;
         this.generoRepository = generoRepository;
@@ -44,9 +43,7 @@ public class UsuarioService {
 
     public List<UsuarioDTO> findAll() {
         final List<Usuario> usuarios = usuarioRepository.findAll(Sort.by("id"));
-        return usuarios.stream()
-                .map((usuario) -> mapToDTO(usuario, new UsuarioDTO()))
-                .toList();
+        return usuarios.stream().map((usuario) -> mapToDTO(usuario, new UsuarioDTO())).toList();
     }
 
     public UsuarioDTO get(final Long id) {
@@ -108,8 +105,7 @@ public class UsuarioService {
     }
 
     public String getReferencedWarning(final Long id) {
-        final Usuario usuario = usuarioRepository.findById(id)
-                .orElseThrow(NotFoundException::new);
+        final Usuario usuario = usuarioRepository.findById(id).orElseThrow(NotFoundException::new);
         final PostBanda idUserPostBanda = postBandaRepository.findFirstByIdUser(usuario);
         if (idUserPostBanda != null) {
             return WebUtils.getMessage("usuario.postBanda.idUser.referenced", idUserPostBanda.getIdBanda());

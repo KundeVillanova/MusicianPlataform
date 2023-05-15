@@ -7,9 +7,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Set;
 
-
+@Getter
+@Setter
 @Entity
 public class Instrumento {
 
@@ -35,37 +39,5 @@ public class Instrumento {
 
     @ManyToMany(mappedBy = "idInstrumento")
     private Set<PostBanda> idBanda;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(final Long id) {
-        this.id = id;
-    }
-
-    public String getNomeInstrumento() {
-        return nomeInstrumento;
-    }
-
-    public void setNomeInstrumento(final String nomeInstrumento) {
-        this.nomeInstrumento = nomeInstrumento;
-    }
-
-    public Set<Usuario> getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(final Set<Usuario> idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public Set<PostBanda> getIdBanda() {
-        return idBanda;
-    }
-
-    public void setIdBanda(final Set<PostBanda> idBanda) {
-        this.idBanda = idBanda;
-    }
 
 }

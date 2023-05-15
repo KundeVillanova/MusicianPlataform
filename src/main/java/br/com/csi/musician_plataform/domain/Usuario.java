@@ -10,10 +10,16 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Set;
 
 
 @Entity
+@Getter
+@Setter
 public class Usuario {
 
     @Id
@@ -64,76 +70,5 @@ public class Usuario {
     @OneToMany(mappedBy = "idUser")
     private Set<PostShow> idShow;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(final Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(final String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(final String email) {
-        this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(final String senha) {
-        this.senha = senha;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(final String telefone) {
-        this.telefone = telefone;
-    }
-
-    public Set<Instrumento> getIdInstrumento() {
-        return idInstrumento;
-    }
-
-    public void setIdInstrumento(final Set<Instrumento> idInstrumento) {
-        this.idInstrumento = idInstrumento;
-    }
-
-    public Set<Genero> getIdGenero() {
-        return idGenero;
-    }
-
-    public void setIdGenero(final Set<Genero> idGenero) {
-        this.idGenero = idGenero;
-    }
-
-    public Set<PostBanda> getIdBanda() {
-        return idBanda;
-    }
-
-    public void setIdBanda(final Set<PostBanda> idBanda) {
-        this.idBanda = idBanda;
-    }
-
-    public Set<PostShow> getIdShow() {
-        return idShow;
-    }
-
-    public void setIdShow(final Set<PostShow> idShow) {
-        this.idShow = idShow;
-    }
 
 }

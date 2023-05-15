@@ -11,9 +11,13 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Set;
 
-
+@Getter
+@Setter
 @Entity
 public class PostBanda {
 
@@ -49,44 +53,5 @@ public class PostBanda {
     )
     private Set<Instrumento> idInstrumento;
 
-    public Long getIdBanda() {
-        return idBanda;
-    }
-
-    public void setIdBanda(final Long idBanda) {
-        this.idBanda = idBanda;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(final String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(final String descricao) {
-        this.descricao = descricao;
-    }
-
-    public Usuario getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(final Usuario idUser) {
-        this.idUser = idUser;
-    }
-
-    public Set<Instrumento> getIdInstrumento() {
-        return idInstrumento;
-    }
-
-    public void setIdInstrumento(final Set<Instrumento> idInstrumento) {
-        this.idInstrumento = idInstrumento;
-    }
 
 }

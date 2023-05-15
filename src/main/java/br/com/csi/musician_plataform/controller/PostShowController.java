@@ -53,7 +53,8 @@ public class PostShowController {
     }
 
     @GetMapping("/add")
-    public String add(@ModelAttribute("postShow") final PostShowDTO postShowDTO) {
+    public String add(
+            @ModelAttribute("postShow") final PostShowDTO postShowDTO) {
         return "postShow/add";
     }
 
