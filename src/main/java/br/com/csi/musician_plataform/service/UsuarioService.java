@@ -47,8 +47,7 @@ public class UsuarioService {
     }
 
     public UsuarioDTO get(final Long id) {
-        return usuarioRepository.findById(id)
-                .map(usuario -> mapToDTO(usuario, new UsuarioDTO()))
+        return usuarioRepository.findById(id).map(usuario -> mapToDTO(usuario, new UsuarioDTO()))
                 .orElseThrow(NotFoundException::new);
     }
 

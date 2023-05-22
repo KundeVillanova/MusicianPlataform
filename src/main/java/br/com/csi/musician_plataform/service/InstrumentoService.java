@@ -21,9 +21,9 @@ public class InstrumentoService {
     private final UsuarioRepository usuarioRepository;
     private final PostBandaRepository postBandaRepository;
 
-    public InstrumentoService(final InstrumentoRepository instrumentoRepository,
-            final UsuarioRepository usuarioRepository,
-            final PostBandaRepository postBandaRepository) {
+    public InstrumentoService(final InstrumentoRepository instrumentoRepository, final UsuarioRepository usuarioRepository,
+            final PostBandaRepository postBandaRepository)
+    {
         this.instrumentoRepository = instrumentoRepository;
         this.usuarioRepository = usuarioRepository;
         this.postBandaRepository = postBandaRepository;
@@ -32,14 +32,13 @@ public class InstrumentoService {
     public List<InstrumentoDTO> findAll() {
         final List<Instrumento> instrumentos = instrumentoRepository.findAll(Sort.by("id"));
         return instrumentos.stream()
-                .map((instrumento) -> mapToDTO(instrumento, new InstrumentoDTO()))
-                .toList();
+                .map((instrumento) -> mapToDTO(instrumento, new InstrumentoDTO())).toList();
     }
 
     public InstrumentoDTO get(final Long id) {
         return instrumentoRepository.findById(id)
-                .map(instrumento -> mapToDTO(instrumento, new InstrumentoDTO()))
-                .orElseThrow(NotFoundException::new);
+           .map(instrumento -> mapToDTO(instrumento, new InstrumentoDTO()))
+           .orElseThrow(NotFoundException::new);
     }
 
     public Long create(final InstrumentoDTO instrumentoDTO) {

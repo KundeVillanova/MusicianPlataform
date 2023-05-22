@@ -32,8 +32,7 @@ public class GeneroService {
     public List<GeneroDTO> findAll() {
         final List<Genero> generos = generoRepository.findAll(Sort.by("id"));
         return generos.stream()
-                .map((genero) -> mapToDTO(genero, new GeneroDTO()))
-                .toList();
+                .map((genero) -> mapToDTO(genero, new GeneroDTO())).toList();
     }
 
     public GeneroDTO get(final Long id) {

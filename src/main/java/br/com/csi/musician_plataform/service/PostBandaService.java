@@ -35,13 +35,11 @@ public class PostBandaService {
     public List<PostBandaDTO> findAll() {
         final List<PostBanda> postBandas = postBandaRepository.findAll(Sort.by("idBanda"));
         return postBandas.stream()
-                .map((postBanda) -> mapToDTO(postBanda, new PostBandaDTO()))
-                .toList();
+           .map((postBanda) -> mapToDTO(postBanda, new PostBandaDTO())).toList();
     }
 
     public PostBandaDTO get(final Long idBanda) {
-        return postBandaRepository.findById(idBanda)
-                .map(postBanda -> mapToDTO(postBanda, new PostBandaDTO()))
+        return postBandaRepository.findById(idBanda).map(postBanda -> mapToDTO(postBanda, new PostBandaDTO()))
                 .orElseThrow(NotFoundException::new);
     }
 
@@ -68,8 +66,7 @@ public class PostBandaService {
         postBandaDTO.setDescricao(postBanda.getDescricao());
         postBandaDTO.setIdUser(postBanda.getIdUser() == null ? null : postBanda.getIdUser().getId());
         postBandaDTO.setIdInstrumento(postBanda.getIdInstrumento() == null ? null : postBanda.getIdInstrumento().stream()
-                .map(instrumento -> instrumento.getId())
-                .toList());
+                .map(instrumento -> instrumento.getId()).toList());
         return postBandaDTO;
     }
 
