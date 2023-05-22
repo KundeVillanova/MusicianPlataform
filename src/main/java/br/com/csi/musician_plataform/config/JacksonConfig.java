@@ -9,14 +9,14 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class JacksonConfig {
-
+    //configuração do Jackson para personalizar a serialização e desserialização de objetos JSON
     @Bean
     public Jackson2ObjectMapperBuilderCustomizer jacksonCustomizer() {
         return jacksonObjectMapperBuilder -> {
                 jacksonObjectMapperBuilder.featuresToDisable(
-                        DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
-                        DeserializationFeature.ACCEPT_FLOAT_AS_INT,
-                        SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+                        DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, // Não falhar em propriedades desconhecidas
+                        DeserializationFeature.ACCEPT_FLOAT_AS_INT, // Não aceitar floats como inteiros
+                        SerializationFeature.WRITE_DATES_AS_TIMESTAMPS); // Serializar datas como timestamps
                 };
     }
 

@@ -8,10 +8,9 @@ import org.springframework.web.bind.annotation.InitBinder;
 
 @ControllerAdvice
 public class ControllerConfig {
-
+    //removendo os espaços extras e garantindo que as informações estejam formatadas corretamente
     @InitBinder
     void initBinder(final WebDataBinder binder) {
         binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
     }
-
 }
